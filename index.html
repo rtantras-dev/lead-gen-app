@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Generation Form</title>
+    <!-- Google Analytics 4 (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8LT2WWTHY6"></script> <!-- Replace with your GA4 Measurement ID -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-8LT2WWTHY6');  <!-- Replace with your GA4 Measurement ID -->
+    </script>
+</head>
+<body>
+    <h1>Lead Generation Form</h1>
+    <form id="leadForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="responseMessage"></p>
+
+    <script>
+        // Handle form submission with AJAX
+        document.getElementById('leadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            fetch('http://localhost:3000/submit', {  // Will update to Heroku URL later
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('responseMessage').innerText = data.message;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                document.getElementById('responseMessage').innerText = 'There was an error submitting your form.';
+            });
+        });
+    </script>
+</body>
+</html>
