@@ -13,8 +13,8 @@ app.use(cors());  // Enable CORS to allow frontend to communicate with the serve
 app.use(bodyParser.json());  // To parse JSON bodies
 
 // GA4 Measurement Protocol details
-const MEASUREMENT_ID = 'G-8LT2WWTHY6';  // Replace with your GA4 Measurement ID
-const API_SECRET = 'h8xBnaQqSQOmed3VaQwScg';    // Replace with your API Secret from GA4
+const MEASUREMENT_ID = 'G-NV5KP7C9QP';  // Replace with your GA4 Measurement ID
+const API_SECRET = '_wBQ6E7XSZWYeikED-Y8LA';    // Replace with your API Secret from GA4
 
 // Endpoint to handle form submission
 app.post('/submit', async (req, res) => {
